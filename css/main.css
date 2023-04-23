@@ -1,4 +1,5 @@
 @media screen and (max-width:600px) {
+    /******** Navigation ********/
     .side-menu{
         transition: .3s all ease-in-out;
         position: fixed;
