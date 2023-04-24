@@ -48,11 +48,11 @@
 </head>
 <body>
     <nav>
-        <div class="fs-3 py-2 px-5 lead d-flex justify-content-around">
+        <div class="fs-3 py-2 px-5 lead d-flex justify-content-around align-items-center">
             <div class="">
                 yutons
             </div>
-            <button class="sidemenu-toggler">
+            <button class="sidemenu-toggler d-fixed d-sm-fixed d-md-none d-lg-none">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list"
                     viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
@@ -61,44 +61,57 @@
             </button>
             <div class="side-menu show" id="SideMenu">
                 <div class="d-flex flex-column flex-sm-column flex-md-row flex-lg-row text-center">
-                    <div class="py-2 sidemenu-list ">Menu</div>
-                    <div class="py-2 sidemenu-list ">Menu</div>
-                    <div class="py-2 sidemenu-list ">Menu</div>
-                    <div class="py-2 sidemenu-list ">Menu</div>
-                    <div class="py-2 sidemenu-list ">Menu</div>
+                    <div class="px-2">
+                        <div class="py-2 sidemenu-list ">Menu</div>
+                    </div>
+                    <div class="px-2">
+                        <div class="py-2 sidemenu-list ">Menu</div>
+                    </div>
+                    <div class="px-2">
+                        <div class="py-2 sidemenu-list ">Menu</div>
+                    </div>
+                    <div class="px-2">
+                        <div class="py-2 sidemenu-list ">Menu</div>
+                    </div>
+                    <div class="px-2">
+                        <div class="py-2 sidemenu-list ">Menu</div>
+                    </div>
                 </div>
             </div>
-            <div class="sidemenu-close-bg show" id="sideMenuCloseLayer"></div>
+            <div class="sidemenu-close-bg show d-fixed d-sm-fixed d-md-none d-lg-none" id="sideMenuCloseLayer"></div>
         </div>
     </nav>
 
     <script>
-        let sideMenuFlag = false;
+        let sideMenuFlag = true;
+        let sidemenu = document.getElementById('SideMenu');
+        let sideMenuCloseLayer = document.getElementsByClassName('sidemenu-close-bg')[0];
 
         document.querySelectorAll('.sidemenu-toggler').forEach(el => {
             el.addEventListener('click', () => {
                 if (sideMenuFlag == false) {
                     sideMenuFlag = true;
-                    document.getElementById('SideMenu').classList.add('show');
-                    document.getElementById('SideMenu').classList.remove('hidden');
-                    // document.getElementsByClassName('sidemenu-close-bg')[0].remove('hidden');
-                    // document.getElementsByClassName('sidemenu-close-bg')[0].add('show');
+                    sidemenu.classList.add('show');
+                    sidemenu.classList.remove('hidden');
+                    sideMenuCloseLayer.classList.remove('hidden');
+                    sideMenuCloseLayer.classList.add('show');
                 } else {
                     sideMenuFlag = false;
-                    document.getElementById('SideMenu').classList.add('hidden');
-                    document.getElementById('SideMenu').classList.remove('show');
-                    // document.getElementsByClassName('sidemenu-close-bg')[0].add('hidden');
-                    // document.getElementsByClassName('sidemenu-close-bg')[0].remove('show');
+                    sidemenu.classList.add('hidden');
+                    sidemenu.classList.remove('show');
+                    sideMenuCloseLayer.classList.add('hidden');
+                    sideMenuCloseLayer.classList.remove('show');
                 }
             });
         });
 
-        document.getElementById('sideMenuCloseLayer').addEventListener('click', () => {
+        sideMenuCloseLayer.addEventListener('click', () => {
             if (sideMenuFlag == true) {
-                document.getElementById('SideMenu').classList.add('hidden');
-                document.getElementById('SideMenu').classList.remove('show');
-                document.getElementsByClassName('sidemenu-close-bg')[0].remove('show');
-                document.getElementsByClassName('sidemenu-close-bg')[0].add('hidden');
+                sideMenuFlag = false;
+                sidemenu.classList.add('hidden');
+                sidemenu.classList.remove('show');
+                sideMenuCloseLayer.classList.remove('show');
+                sideMenuCloseLayer.classList.add('hidden');
             }
         })
     </script>
